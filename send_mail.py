@@ -47,4 +47,4 @@ def send_mail(address):
     s.quit()
 
 
-send_mail()
+send_mail("aidendawes@gmail.com")
