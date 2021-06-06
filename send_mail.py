@@ -1,5 +1,6 @@
 import glob
 import os
+from posixpath import normcase
 import smtplib
 import random
 import sys
@@ -26,6 +27,14 @@ else:
 print(aname, qname)
 
 
+def getCollectionName(query):
+    l = len(query)
+    with open("index.txt", "r") as file:
+        for line in file:
+            if(line[0:l] == query):
+                return line[l+1:len(line)]
+
+
 def send_mail(address):
     with open(imagepath+str(qname), 'rb') as f:
         img_data = f.read()
@@ -33,8 +42,9 @@ def send_mail(address):
     msg['Subject'] = 'Daily Math Question'
     msg['From'] = 'e@mail.cc'
     msg['To'] = address
-
-    text = MIMEText("")
+    n = qname[0:l-4]
+    t = getCollectionName(n)
+    text = MIMEText(t)
     msg.attach(text)
     image = MIMEImage(img_data, name=os.path.basename(imagepath+str(qname)))
     msg.attach(image)
