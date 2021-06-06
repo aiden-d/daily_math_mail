@@ -59,4 +59,7 @@ def send_mail(address):
     s.quit()
 
 
-send_mail("aidendawes@gmail.com")
+recipiants = ["aidendawes@gmail.com",
+              "adawes@aisj-jhb.com", "tpriester@aisj-jhb.com"]
+for r in recipiants:
+    send_mail(r)
