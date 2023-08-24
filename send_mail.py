@@ -7,8 +7,8 @@ import sys
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
-gmail_user = 'aidendawes.spammail@gmail.com'
-gmail_password = '9meidoring'
+gmail_user = '"SENDER.EMAIL@EMAIL.COM"'
+gmail_password = 'PASSWORD'
 imagepath = str(sys.path[0]) + "/images/"
 print(imagepath)
 
@@ -40,7 +40,7 @@ def send_mail(address):
         img_data = f.read()
     msg = MIMEMultipart()
     msg['Subject'] = 'Daily Math Question'
-    msg['From'] = 'e@mail.cc'
+    msg['From'] = 'YOUR.EMAIL@EMAIL.COM'
     msg['To'] = address
     n = qname[0:l-4]
     t = getCollectionName(n)
@@ -54,12 +54,12 @@ def send_mail(address):
     msg.attach(image)
     s = smtplib.SMTP_SSL('smtp.gmail.com', 465)
     s.login(gmail_user, gmail_password)
-    s.sendmail("aidendawes.spammail@gmail.com",
+    s.sendmail("YOUR.EMAIL@EMAIL.COM",
                address, msg.as_string())
     s.quit()
 
 
-recipiants = ["aidendawes@gmail.com",
-              "adawes@aisj-jhb.com", "tpriester@aisj-jhb.com"]
+recipiants = ["ANOTHER.EMAIL@EMAIL.COM",
+              "ANOTHER.EMAIL@EMAIL.COM", "ANOTHER.EMAIL@EMAIL.COM", "ANOTHER.EMAIL@EMAIL.COM", "ANOTHER.EMAIL@EMAIL.COM"]
 for r in recipiants:
     send_mail(r)
